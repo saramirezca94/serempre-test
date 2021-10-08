@@ -54,14 +54,14 @@ class CityController extends Controller
 
             DB::commit();
 
-            return redirect(route('clients.index'))->with('message', ['success', __('The city was created')]);
+            return redirect(route('cities.index'))->with('message', ['success', __('The city was created')]);
             
 
         } catch (\Exception $th) {
             
             DB::rollback();
 
-            return redirect(route('clients.index'))->with('message', ['danger', $th->getLine().' '.$th->getMessage()]);
+            return redirect(route('cities.index'))->with('message', ['danger', $th->getLine().' '.$th->getMessage()]);
 
         }
     }
@@ -123,7 +123,7 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy($id)
     {
         try {
 
