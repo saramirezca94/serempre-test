@@ -40,7 +40,8 @@ class CityController extends Controller
     {
         $validated = $request->validate([
 
-            'name' => 'required|max:255'
+            'name' => 'required|max:255|unique:cities,name',
+            'population' => 'required|integer'
 
         ]);
 
@@ -50,6 +51,7 @@ class CityController extends Controller
 
             $city = new City();
             $city->name = $request->name;
+            $city->population = $request->population;
             $city->save();
 
             DB::commit();
@@ -91,7 +93,7 @@ class CityController extends Controller
     {
         $validated = $request->validate([
 
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:cities,name',
 
         ]);
 
